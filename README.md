@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Viagro — Sitio Web Oficial
 
-## Getting Started
+Sitio web institucional de **Viagro**, empresa del Reino Unido especializada en la comercialización de commodities agrícolas y fertilizantes a nivel global.
 
-First, run the development server:
+---
+
+## Stack tecnológico
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS v4**
+
+---
+
+## Comandos
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Servidor de desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build de producción
+npm run build
+
+# Ver en iPhone (mismo WiFi)
+# http://192.168.1.113:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura del proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  layout.tsx         ← Metadatos SEO globales, fuente Geist
+  page.tsx           ← Página principal (monta todos los componentes)
+  globals.css        ← Variables de paleta de colores
+  robots.ts          ← SEO: genera /robots.txt
+  sitemap.ts         ← SEO: genera /sitemap.xml
 
-## Learn More
+components/
+  Navbar.tsx         ← Navegación sticky con menú hamburguesa
+  Hero.tsx           ← Sección hero con imagen de fondo
+  QuienesSomos.tsx   ← Sección quiénes somos con cards
+  Productos.tsx      ← Dos carruseles de productos
+  Servicios.tsx      ← Grid de 4 servicios
+  Contacto.tsx       ← Formulario + cards de contacto
+  Footer.tsx         ← Footer con imagen de fondo
 
-To learn more about Next.js, take a look at the following resources:
+public/
+  hero.png           ← Imagen de fondo del Hero
+  footer.jpg         ← Imagen de fondo del Footer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+types/
+  global.d.ts        ← Declaración de tipos para imports CSS
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Paleta de colores
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable   | Color     | Uso                             |
+|------------|-----------|---------------------------------|
+| `#1a3a2a`  | Verde oscuro  | Hero, Footer, botones principales |
+| `#2d6a4f`  | Verde medio   | Acentos, hovers               |
+| `#52b788`  | Verde claro   | Etiquetas, destacados         |
+| `#d8eedd`  | Verde suave   | Placeholders de imagen        |
+| `#7c5c3b`  | Tierra        | Etiquetas secundarias         |
+| `#c4a882`  | Tierra claro  | Flechas de carrusel           |
+| `#f7f4ef`  | Crema         | Fondo principal de secciones  |
+| `#ffffff`  | Blanco        | Cards, formularios            |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Tipografía:** Geist Sans (Google Fonts)
+
+---
+
+## Secciones
+
+### Navbar
+- Sticky, fondo crema, borde inferior sutil
+- Logo VIAGRO a la izquierda, links con subrayado animado a la derecha
+- Responsive: menú hamburguesa en mobile con animación
+
+### Hero
+- Imagen de fondo `hero.png` con overlay verde oscuro al 80%
+- Etiqueta, título grande, subtítulo y dos CTAs
+- Degradado inferior para transición suave hacia la siguiente sección
+
+### Quiénes Somos
+- Título: "El partner que el campo necesita"
+- Dos columnas: imagen (placeholder hasta tener la real) + texto + 3 cards de valores
+
+### Productos
+- Dos carruseles horizontales con flechas: **Commodities Agrícolas** y **Fertilizantes**
+- 6 productos por carrusel, scroll suave, scrollbar oculta
+
+### Servicios
+- 4 cards en grid responsive (1 → 2 → 4 columnas)
+- Número decorativo, línea acento verde, título y descripción
+
+### Contacto
+- Fondo crema con formulario flotante (card blanca con sombra)
+- Campos: nombre, empresa, email, mensaje
+- Columna derecha: placeholder de mapa + 3 cards flotantes (email, teléfono, ubicación)
+- Cards con hover: borde verde + elevación sutil
+
+### Footer
+- Imagen de fondo `footer.jpg` con overlay verde oscuro al 85%
+- 3 columnas: logo + descripción / navegación / datos de contacto
+- Copyright dinámico con año actual
+
+---
+
+## SEO
+
+Configurado en `app/layout.tsx`:
+
+- Title y description optimizados
+- Keywords del sector agro
+- **Open Graph** completo (LinkedIn, WhatsApp, Facebook)
+- **Twitter Card** con imagen grande
+- URL canónica
+- `robots.txt` — permite indexación total
+- `sitemap.xml` — mapa del sitio para Google
+
+> **Importante:** reemplazar `https://www.viagro.co.uk` en `layout.tsx`, `robots.ts` y `sitemap.ts` cuando el dominio esté disponible.
+
+---
+
+## Pendientes
+
+- [ ] Favicon con el logo real de Viagro
+- [ ] Imágenes reales para los productos (carruseles)
+- [ ] Imagen real para la sección Quiénes Somos
+- [ ] Lógica de envío del formulario de contacto
+- [ ] Mapa real en sección Contacto (Google Maps u otro)
+- [ ] Dominio real para reemplazar el placeholder en la configuración SEO
