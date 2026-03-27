@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type Estado = "idle" | "enviando" | "ok" | "error";
 
@@ -142,17 +143,22 @@ export default function Contacto() {
           {/* Right column — contact info + map */}
           <div className="flex flex-col gap-4 h-full">
 
-            {/* Map */}
-            <div className="w-full flex-1 min-h-52 rounded-2xl overflow-hidden shadow-md">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.9!2d-58.3796!3d-34.6033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac8019e7b11%3A0x0!2sAv.+Roque+S%C3%A1enz+Pe%C3%B1a+943%2C+Buenos+Aires!5e0!3m2!1sen!2sar!4v1"
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: "208px" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Viagro office location"
+            {/* Brand card */}
+            <div className="w-full flex-1 min-h-52 rounded-2xl overflow-hidden shadow-md bg-[#1a3a2a] flex items-center justify-center relative">
+              {/* Dot pattern */}
+              <div
+                className="absolute inset-0 opacity-10"
+                style={{
+                  backgroundImage: "radial-gradient(circle, #52b788 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+              <Image
+                src="/logo.png"
+                alt="Viagro"
+                width={180}
+                height={60}
+                className="object-contain brightness-0 invert relative"
               />
             </div>
 

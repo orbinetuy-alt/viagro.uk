@@ -3,19 +3,19 @@ const servicios = [
     numero: "01",
     titulo: "Commodity trading",
     descripcion:
-      "Buying and selling of grains with full structuring of international operations, connecting producers with global markets efficiently.",
+      "Buying and selling of commodities and agricultural products with full structuring of international operations, connecting producers with global markets efficiently.",
   },
   {
     numero: "02",
     titulo: "Logistics solutions",
     descripcion:
-      "Road transport, river and maritime coordination, storage and inventory management — covering the full chain from origin to destination.",
+      "We offer transportation and logistics services in all their forms: land, river, sea, and rail transport, cargo inspection and control, warehousing and inventory management.",
   },
   {
     numero: "03",
     titulo: "Financial solutions",
     descripcion:
-      "Input and campaign financing, commercial credit structuring and assistance with international payment arrangements.",
+      "Commercial credit structuring and assistance with international payment arrangements",
   },
 ];
 

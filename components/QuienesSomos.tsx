@@ -3,7 +3,7 @@ import Image from "next/image";
 const cards = [
   {
     titulo: "Tailored solutions",
-    descripcion: "We supply inputs, machinery and custom solutions adapted to each client's specific needs and goals.",
+    descripcion: "We provide supplies, machinery and custom solutions adapted to each client's specific needs",
   },
   {
     titulo: "Expert trading",
@@ -11,7 +11,7 @@ const cards = [
   },
   {
     titulo: "Integrated support",
-    descripcion: "From logistics to financing, we accompany producers across the region with end-to-end expertise.",
+    descripcion: "We accompany producers across the region with end-to-end solutions",
   },
 ];
 

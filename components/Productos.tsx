@@ -136,9 +136,12 @@ export default function Productos() {
           </span>
         </div>
         <h2 className="text-4xl sm:text-5xl font-bold text-[#1a3a2a] text-center mb-16 tracking-tight">
-          What the market needs,<br />
-          <span className="text-[#2d6a4f]">we have it</span>
+          Comprehensive solutions backed by<br />
+          <span className="text-[#2d6a4f]">strong relationships</span>
         </h2>
+        <h3 className="text-lg text-[#4a4a4a] text-center mb-16">
+          Our management capabilities, together with our extensive relationships with producers and suppliers, allow us to offer our clients comprehensive and full-service solutions.
+        </h3>
 
         {/* Carousels */}
         <Carrusel categoria="Agricultural Commodities" items={commodities} />

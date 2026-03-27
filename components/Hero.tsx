@@ -24,25 +24,35 @@ export default function Hero() {
       {/* Decorative accent — green line */}
       <div className="absolute left-0 top-0 h-full w-1 bg-[#52b788]" />
 
+      {/* Logo centrado */}
+      <div className="absolute top-10 left-0 right-0 flex justify-center">
+        <Image
+          src="/logo.png"
+          alt="Viagro"
+          width={250}
+          height={170}
+          className="object-contain brightness-0 invert"
+        />
+      </div>
+
       {/* Contenido */}
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-28">
 
         {/* Top label */}
         <p className="mb-6 inline-block text-xs font-semibold tracking-[0.25em] uppercase text-[#52b788] border border-[#52b788] px-3 py-1 rounded-full">
-          Viagro · United Kingdom
+          Viagro
         </p>
 
         {/* Main title */}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight max-w-4xl">
-          Innovative
+          Powering
           <br />
-          <span className="text-[#52b788]">agricultural solutions</span>
+          <span className="text-[#52b788]">agribusiness efficiency</span>
         </h1>
 
         {/* Subtitle */}
         <p className="mt-6 text-lg text-[#c4a882] max-w-xl leading-relaxed">
-          We connect global markets with the land. We trade agricultural
-          commodities and fertilisers with rigour, experience and commitment.
+          We connect global markets with the land. We trade agricultural commodities and fertilisers with experience and commitment.
         </p>
 
         {/* CTA buttons */}
