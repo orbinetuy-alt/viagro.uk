@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_yqn02es";
+const EMAILJS_TEMPLATE_ID = "template_ul5gykn";
+const EMAILJS_PUBLIC_KEY = "cGZb9uMDYJOY3Lz4f";
 
 type Estado = "idle" | "enviando" | "ok" | "error";
 
@@ -24,12 +29,17 @@ export default function Contacto() {
     e.preventDefault();
     setEstado("enviando");
     try {
-      const res = await fetch("/api/contacto", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formulario),
-      });
-      if (!res.ok) throw new Error();
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          nombre: formulario.nombre,
+          empresa: formulario.empresa,
+          email: formulario.email,
+          mensaje: formulario.mensaje,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       setEstado("ok");
       setFormulario({ nombre: "", empresa: "", email: "", mensaje: "" });
     } catch {
