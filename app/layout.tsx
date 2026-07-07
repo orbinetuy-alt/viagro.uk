@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/lib/LanguageContext";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +35,11 @@ export const metadata: Metadata = {
   publisher: "Viagro",
   alternates: {
     canonical: URL_BASE,
+    languages: {
+      "en": URL_BASE,
+      "es": URL_BASE,
+      "x-default": URL_BASE,
+    },
   },
   openGraph: {
     type: "website",
@@ -59,8 +66,13 @@ export const metadata: Metadata = {
     images: ["/hero.png"],
   },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/logo.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
   },
   robots: {
     index: true,
@@ -74,6 +86,34 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Viagro",
+  url: URL_BASE,
+  logo: `${URL_BASE}/logo.png`,
+  description:
+    "A UK-based company specialising in the trading of agricultural commodities and fertilisers at a global level.",
+  email: "comercial@viagro.uk",
+  address: [
+    {
+      "@type": "PostalAddress",
+      addressLocality: "London",
+      addressCountry: "GB",
+    },
+    {
+      "@type": "PostalAddress",
+      addressLocality: "Buenos Aires",
+      addressCountry: "AR",
+    },
+    {
+      "@type": "PostalAddress",
+      addressLocality: "Asunción",
+      addressCountry: "PY",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -82,7 +122,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} antialiased`}>
-        {children}
+        <Script
+          id="json-ld-organization"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

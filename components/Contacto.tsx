@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const EMAILJS_SERVICE_ID = "service_yqn02es";
 const EMAILJS_TEMPLATE_ID = "template_ul5gykn";
@@ -11,6 +12,8 @@ const EMAILJS_PUBLIC_KEY = "cGZb9uMDYJOY3Lz4f";
 type Estado = "idle" | "enviando" | "ok" | "error";
 
 export default function Contacto() {
+  const { t } = useLanguage();
+  const c = t.contact;
   const [formulario, setFormulario] = useState({
     nombre: "",
     empresa: "",
@@ -53,13 +56,13 @@ export default function Contacto() {
 
         {/* Label */}
         <span className="inline-block mb-10 text-xs font-semibold tracking-[0.25em] uppercase text-[#2d6a4f] border border-[#2d6a4f] px-4 py-1.5 rounded-full">
-          Get in touch
+          {c.badge}
         </span>
 
         {/* Title */}
         <h2 className="text-4xl sm:text-5xl font-bold text-[#1a3a2a] mb-14 tracking-tight max-w-xl">
-          Let&apos;s talk about your<br />
-          <span className="text-[#2d6a4f]">next operation</span>
+          {c.title1}<br />
+          <span className="text-[#2d6a4f]">{c.title2}</span>
         </h2>
 
         {/* Dos columnas */}
@@ -73,28 +76,28 @@ export default function Contacto() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold tracking-wider uppercase text-[#4a4a4a]">
-                  Name
+                  {c.labelName}
                 </label>
                 <input
                   type="text"
                   name="nombre"
                   value={formulario.nombre}
                   onChange={manejarCambio}
-                  placeholder="Your name"
+                  placeholder={c.placeholderName}
                   className="bg-[#f7f4ef] border border-[#e0d8cc] rounded-lg px-4 py-3 text-sm text-[#1c1c1c] placeholder-[#b0a898] focus:outline-none focus:border-[#2d6a4f] focus:ring-2 focus:ring-[#2d6a4f]/10 transition-all duration-200"
                   required
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold tracking-wider uppercase text-[#4a4a4a]">
-                  Company
+                  {c.labelCompany}
                 </label>
                 <input
                   type="text"
                   name="empresa"
                   value={formulario.empresa}
                   onChange={manejarCambio}
-                  placeholder="Your company"
+                  placeholder={c.placeholderCompany}
                   className="bg-[#f7f4ef] border border-[#e0d8cc] rounded-lg px-4 py-3 text-sm text-[#1c1c1c] placeholder-[#b0a898] focus:outline-none focus:border-[#2d6a4f] focus:ring-2 focus:ring-[#2d6a4f]/10 transition-all duration-200"
                 />
               </div>
@@ -102,7 +105,7 @@ export default function Contacto() {
 
             <div className="flex flex-col gap-2">
               <label className="text-xs font-semibold tracking-wider uppercase text-[#4a4a4a]">
-                Email
+                {c.labelEmail}
               </label>
               <input
                 type="email"
@@ -117,13 +120,13 @@ export default function Contacto() {
 
             <div className="flex flex-col gap-2">
               <label className="text-xs font-semibold tracking-wider uppercase text-[#4a4a4a]">
-                Message
+                {c.labelMessage}
               </label>
               <textarea
                 name="mensaje"
                 value={formulario.mensaje}
                 onChange={manejarCambio}
-                placeholder="Tell us about your enquiry or requirement..."
+                placeholder={c.placeholderMessage}
                 rows={5}
                 className="bg-[#f7f4ef] border border-[#e0d8cc] rounded-lg px-4 py-3 text-sm text-[#1c1c1c] placeholder-[#b0a898] focus:outline-none focus:border-[#2d6a4f] focus:ring-2 focus:ring-[#2d6a4f]/10 transition-all duration-200 resize-none"
                 required
@@ -135,17 +138,17 @@ export default function Contacto() {
               disabled={estado === "enviando"}
               className="self-start bg-[#1a3a2a] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg hover:bg-[#2d6a4f] transition-colors duration-200 shadow-md shadow-[#1a3a2a]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {estado === "enviando" ? "Sending..." : "Send message"}
+              {estado === "enviando" ? c.sending : c.send}
             </button>
 
             {estado === "ok" && (
               <p className="text-sm text-[#2d6a4f] font-medium">
-                ✓ Message sent — we&apos;ll be in touch shortly.
+                ✓ {c.ok}
               </p>
             )}
             {estado === "error" && (
               <p className="text-sm text-red-600 font-medium">
-                Something went wrong. Please try again or email us directly.
+                {c.error}
               </p>
             )}
           </form>
@@ -172,11 +175,10 @@ export default function Contacto() {
               />
             </div>
 
-            {/* 3 floating contact cards */}
+            {/* 2 floating contact cards */}
             {[
               { etiqueta: "Email", valor: "comercial@viagro.uk", icono: "✉" },
-              { etiqueta: "Phone", valor: "+598 96 542 526", icono: "✆" },
-              { etiqueta: "Location", valor: "Av Roque Saenz Peña 943, Floor 8, CABA", icono: "⊕" },
+              { etiqueta: c.cardLocation, valor: "Londres, United Kingdom\nBuenos Aires, Argentina\nAsunción, Paraguay", icono: "⊕" },
             ].map((item) => (
               <div
                 key={item.etiqueta}
@@ -189,7 +191,7 @@ export default function Contacto() {
                   <span className="text-xs font-semibold tracking-wider uppercase text-[#7c5c3b]">
                     {item.etiqueta}
                   </span>
-                  <span className="text-sm text-[#1c1c1c]">{item.valor}</span>
+                  <span className="text-sm text-[#1c1c1c] whitespace-pre-line">{item.valor}</span>
                 </div>
               </div>
             ))}

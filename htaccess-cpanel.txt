@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Serve viagro.uk from /viagro subfolder
+RewriteCond %{HTTP_HOST} ^(www\.)?viagro\.uk$ [NC]
+RewriteCond %{REQUEST_URI} !^/viagro/
+RewriteRule ^(.*)$ /viagro/$1 [L,QSA]

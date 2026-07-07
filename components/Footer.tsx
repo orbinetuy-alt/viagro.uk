@@ -1,14 +1,12 @@
-import Image from "next/image";
+"use client";
 
-const enlacesNav = [
-  { etiqueta: "Home", href: "#inicio" },
-  { etiqueta: "About", href: "#nosotros" },
-  { etiqueta: "Products", href: "#productos" },
-  { etiqueta: "Services", href: "#servicios" },
-  { etiqueta: "Contact", href: "#contacto" },
-];
+import Image from "next/image";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+  const { description, navLabel, contactLabel, rights, country } = t.footer;
+  const enlacesNav = t.navbar.links;
   const anio = new Date().getFullYear();
 
   return (
@@ -41,14 +39,14 @@ export default function Footer() {
             />
           </a>
           <p className="text-sm text-[#a8c5b5] leading-relaxed max-w-xs">
-            A UK-based company specialising in the trading of agricultural commodities and fertilisers worldwide.
+            {description}
           </p>
         </div>
 
         {/* Column 2 — Navigation */}
         <div className="flex flex-col gap-4">
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[#52b788]">
-            Navigation
+            {navLabel}
           </span>
           <ul className="flex flex-col gap-2">
             {enlacesNav.map((enlace) => (
@@ -67,7 +65,7 @@ export default function Footer() {
         {/* Column 3 — Contact */}
         <div className="flex flex-col gap-4">
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[#52b788]">
-            Contact
+            {contactLabel}
           </span>
           <div className="flex flex-col gap-2">
             <span className="text-sm text-[#a8c5b5]">comercial@viagro.uk</span>
@@ -83,10 +81,10 @@ export default function Footer() {
       {/* Copyright */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
         <span className="text-xs text-[#6b9e85]">
-          © {anio} Viagro. All rights reserved.
+          © {anio} Viagro. {rights}
         </span>
         <span className="text-xs text-[#6b9e85]">
-          United Kingdom
+          {country}
         </span>
       </div>
       </div>{/* fin contenido relativo */}

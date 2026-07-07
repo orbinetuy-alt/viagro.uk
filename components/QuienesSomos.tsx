@@ -1,21 +1,12 @@
-import Image from "next/image";
+"use client";
 
-const cards = [
-  {
-    titulo: "Tailored solutions",
-    descripcion: "We provide inputs, machinery and custom solutions adapted to each client's specific needs",
-  },
-  {
-    titulo: "Expert trading",
-    descripcion: "Our trading operations connect producers with markets, ensuring competitive conditions at every stage.",
-  },
-  {
-    titulo: "Integrated support",
-    descripcion: "We accompany producers across the region with end-to-end solutions",
-  },
-];
+import Image from "next/image";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function QuienesSomos() {
+  const { t } = useLanguage();
+  const { badge, titleLine1, titleLine2, body, cards } = t.about;
+
   return (
     <section id="nosotros" className="bg-[#f7f4ef] py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -23,13 +14,13 @@ export default function QuienesSomos() {
         {/* Top label */}
         <div className="flex justify-center mb-8">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#2d6a4f] border border-[#2d6a4f] px-4 py-1.5 rounded-full">
-            About us
+            {badge}
           </span>
         </div>
 
         {/* Main title */}
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a3a2a] leading-tight tracking-tight text-center mb-14">
-          A strategic partner for<br />the agricultural industry
+          {titleLine1}<br />{titleLine2}
         </h2>
 
         {/* Content: image + text/cards */}
@@ -57,12 +48,7 @@ export default function QuienesSomos() {
 
             {/* Body text */}
             <p className="text-[#4a4a4a] text-lg leading-relaxed">
-              Viagro Servicios SRL is a strategic partner to the agricultural industry,
-              focused on driving the growth of its clients through the provision of inputs,
-              machinery and tailored solutions. Through our trading operations and our
-              expertise in end-to-end logistics and financing, we support producers across
-              different countries in the region, generating efficiency, competitiveness
-              and sustainable value.
+              {body}
             </p>
 
             {/* 3 cards */}

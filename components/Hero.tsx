@@ -1,6 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+  const { title1, title2, subtitle, cta1, cta2 } = t.hero;
+
   return (
     <section
       id="inicio"
@@ -38,18 +44,16 @@ export default function Hero() {
       {/* Contenido */}
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-28">
 
-        
-
         {/* Main title */}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight max-w-4xl">
-          Powering
+          {title1}
           <br />
-          <span className="text-[#52b788]">agribusiness efficiency</span>
+          <span className="text-[#52b788]">{title2}</span>
         </h1>
 
         {/* Subtitle */}
         <p className="mt-6 text-lg text-[#c4a882] max-w-xl leading-relaxed">
-          We connect global markets with the land. We trade agricultural commodities and fertilisers with experience and commitment.
+          {subtitle}
         </p>
 
         {/* CTA buttons */}
@@ -58,13 +62,13 @@ export default function Hero() {
             href="#productos"
             className="inline-block bg-[#2d6a4f] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-sm hover:bg-[#52b788] transition-colors duration-200"
           >
-            View products
+            {cta1}
           </a>
           <a
             href="#contacto"
             className="inline-block border border-white/30 text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-sm hover:border-white hover:bg-white/10 transition-colors duration-200"
           >
-            Contact us
+            {cta2}
           </a>
         </div>
       </div>

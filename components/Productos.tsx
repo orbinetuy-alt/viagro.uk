@@ -1,29 +1,11 @@
-/* ---------- Main section ---------- */
+"use client";
 
-const categories = [
-  {
-    label: "Agricultural Commodities",
-    paragraphs: [
-      "We trade a broad range of agricultural commodities, including grains and oilseeds, sourced from key producing regions around the world.",
-      "Our approach is driven by market dynamics, allowing us to adapt quickly to changing conditions and identify opportunities that create value for our clients.",
-      "Through strong relationships with producers, logistics partners and buyers, we ensure efficient execution and reliable supply across different markets.",
-    ],
-    imagen: "/AGRICULTURAL COMMODITIES.jpg",
-    alt: "Agricultural commodities",
-  },
-  {
-    label: "Fertilisers",
-    paragraphs: [
-      "We offer a wide range of fertilizers, including urea, phosphates and tailored blends, designed to meet diverse agronomic requirements.",
-      "By working closely with trusted suppliers and understanding regional needs, we provide solutions that support productivity and soil health.",
-      "Our flexible trading approach allows us to respond to market conditions while ensuring consistent quality and timely delivery.",
-    ],
-    imagen: "/fertilizers.jpg",
-    alt: "Fertilisers",
-  },
-];
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Productos() {
+  const { t } = useLanguage();
+  const { badge, title1, title2, intro, categories } = t.products;
+
   return (
     <section id="productos" className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -31,15 +13,15 @@ export default function Productos() {
         {/* Label + title */}
         <div className="flex justify-center mb-4">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#2d6a4f] border border-[#2d6a4f] px-4 py-1.5 rounded-full">
-            Our products
+            {badge}
           </span>
         </div>
         <h2 className="text-4xl sm:text-5xl font-bold text-[#1a3a2a] text-center mb-8 tracking-tight">
-          Comprehensive solutions backed by<br />
-          <span className="text-[#2d6a4f]">strong relationships</span>
+          {title1}<br />
+          <span className="text-[#2d6a4f]">{title2}</span>
         </h2>
         <p className="text-lg text-[#4a4a4a] text-center mb-20 max-w-3xl mx-auto">
-          Our management capabilities, together with our extensive relationships with producers and suppliers, allow us to offer our clients comprehensive and full-service solutions.
+          {intro}
         </p>
 
         {/* Category blocks */}

@@ -1,25 +1,11 @@
-const servicios = [
-  {
-    numero: "01",
-    titulo: "Commodity trading",
-    descripcion:
-      "Buying and selling of commodities and agricultural products with full structuring of international operations, connecting producers with global markets efficiently.",
-  },
-  {
-    numero: "02",
-    titulo: "Logistics solutions",
-    descripcion:
-      "We offer transportation and logistics services in all their forms: land, river, sea, and rail transport, cargo inspection and control, warehousing and inventory management.",
-  },
-  {
-    numero: "03",
-    titulo: "Financial solutions",
-    descripcion:
-      "Commercial credit structuring and assistance with international payment arrangements",
-  },
-];
+"use client";
+
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Servicios() {
+  const { t } = useLanguage();
+  const { badge, title1, title2, items } = t.services;
+
   return (
     <section id="servicios" className="bg-[#f7f4ef] py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -27,17 +13,17 @@ export default function Servicios() {
         {/* Label + title */}
         <div className="flex justify-center mb-4">
           <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#2d6a4f] border border-[#2d6a4f] px-4 py-1.5 rounded-full">
-            Our services
+            {badge}
           </span>
         </div>
         <h2 className="text-4xl sm:text-5xl font-bold text-[#1a3a2a] text-center mb-16 tracking-tight">
-          Comprehensive solutions for<br />
-          <span className="text-[#2d6a4f]">every stage of the business</span>
+          {title1}<br />
+          <span className="text-[#2d6a4f]">{title2}</span>
         </h2>
 
         {/* 4 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {servicios.map((servicio) => (
+          {items.map((servicio) => (
             <div
               key={servicio.numero}
               className="bg-white border border-[#e0d8cc] rounded-sm p-7 flex flex-col gap-4 hover:border-[#2d6a4f] hover:shadow-sm transition-all duration-200 group"

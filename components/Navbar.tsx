@@ -2,17 +2,38 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
-const enlaces = [
-  { etiqueta: "Home", href: "#inicio" },
-  { etiqueta: "About", href: "#nosotros" },
-  { etiqueta: "Products", href: "#productos" },
-  { etiqueta: "Services", href: "#servicios" },
-  { etiqueta: "Contact", href: "#contacto" },
-];
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const { lang, setLang, t } = useLanguage();
+  const { links, openMenu } = t.navbar;
+
+  const LangToggle = ({ mobile = false }: { mobile?: boolean }) => (
+    <div className={`flex items-center gap-1 ${mobile ? "pt-2 border-t border-[#e0d8cc]" : ""}`}>
+      <button
+        onClick={() => setLang("en")}
+        className={`text-xs font-semibold tracking-wider uppercase px-2 py-1 rounded-sm transition-colors duration-200 ${
+          lang === "en"
+            ? "bg-[#2d6a4f] text-white"
+            : "text-[#6b6b6b] hover:text-[#2d6a4f]"
+        }`}
+      >
+        EN
+      </button>
+      <span className="text-[#c4b9a8] text-xs">|</span>
+      <button
+        onClick={() => setLang("es")}
+        className={`text-xs font-semibold tracking-wider uppercase px-2 py-1 rounded-sm transition-colors duration-200 ${
+          lang === "es"
+            ? "bg-[#2d6a4f] text-white"
+            : "text-[#6b6b6b] hover:text-[#2d6a4f]"
+        }`}
+      >
+        ES
+      </button>
+    </div>
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#f7f4ef] border-b border-[#e0d8cc]">
@@ -30,26 +51,29 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Links — escritorio */}
-        <ul className="hidden md:flex items-center gap-8">
-          {enlaces.map((enlace) => (
-            <li key={enlace.href}>
-              <a
-                href={enlace.href}
-                className="text-sm font-medium tracking-wider uppercase text-[#1c1c1c] hover:text-[#2d6a4f] transition-colors duration-200 relative group"
-              >
-                {enlace.etiqueta}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#2d6a4f] transition-all duration-200 group-hover:w-full" />
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Links + selector de idioma — escritorio */}
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8">
+            {links.map((enlace) => (
+              <li key={enlace.href}>
+                <a
+                  href={enlace.href}
+                  className="text-sm font-medium tracking-wider uppercase text-[#1c1c1c] hover:text-[#2d6a4f] transition-colors duration-200 relative group"
+                >
+                  {enlace.etiqueta}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#2d6a4f] transition-all duration-200 group-hover:w-full" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <LangToggle />
+        </div>
 
         {/* Botón hamburguesa — mobile */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-1 cursor-pointer"
           onClick={() => setMenuAbierto(!menuAbierto)}
-          aria-label="Open menu"
+          aria-label={openMenu}
         >
           <span className={`block h-0.5 w-6 bg-[#1a3a2a] transition-all duration-200 ${menuAbierto ? "rotate-45 translate-y-2" : ""}`} />
           <span className={`block h-0.5 w-6 bg-[#1a3a2a] transition-all duration-200 ${menuAbierto ? "opacity-0" : ""}`} />
@@ -61,7 +85,7 @@ export default function Navbar() {
       {menuAbierto && (
         <div className="md:hidden bg-[#f7f4ef] border-t border-[#e0d8cc] px-6 pb-4">
           <ul className="flex flex-col gap-4 pt-4">
-            {enlaces.map((enlace) => (
+            {links.map((enlace) => (
               <li key={enlace.href}>
                 <a
                   href={enlace.href}
@@ -73,6 +97,9 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <div className="mt-4">
+            <LangToggle mobile />
+          </div>
         </div>
       )}
     </header>
