@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import QuienesSomos from "@/components/QuienesSomos";
-import Productos from "@/components/Productos";
-import Servicios from "@/components/Servicios";
-import Contacto from "@/components/Contacto";
-import Footer from "@/components/Footer";
+
+// Below-the-fold components loaded lazily to reduce initial JS bundle
+const QuienesSomos = dynamic(() => import("@/components/QuienesSomos"));
+const Productos = dynamic(() => import("@/components/Productos"));
+const Servicios = dynamic(() => import("@/components/Servicios"));
+const Contacto = dynamic(() => import("@/components/Contacto"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export const metadata: Metadata = {
   title: "Viagro | Agricultural Commodities & Fertilisers",

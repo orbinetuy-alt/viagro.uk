@@ -167,7 +167,7 @@ export default function Contacto() {
                 }}
               />
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Viagro"
                 width={180}
                 height={60}

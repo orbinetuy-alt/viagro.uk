@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "We connect global markets with the land. Agricultural commodities and fertilisers from the United Kingdom.",
     images: [
       {
-        url: "/hero.png",
+        url: "/hero.webp",
         width: 1200,
         height: 630,
         alt: "Viagro — Innovative agricultural solutions",
@@ -91,7 +91,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Viagro",
   url: URL_BASE,
-  logo: `${URL_BASE}/logo.png`,
+  logo: `${URL_BASE}/logo.webp`,
   description:
     "A UK-based company specialising in the trading of agricultural commodities and fertilisers at a global level.",
   email: "comercial@viagro.uk",
@@ -121,6 +121,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload the LCP image to fix Largest Contentful Paint */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero.webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className={`${geistSans.variable} antialiased`}>
         <Script
           id="json-ld-organization"

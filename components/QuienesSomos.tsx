@@ -33,7 +33,7 @@ export default function QuienesSomos() {
             {/* Image */}
             <div className="relative w-full h-full rounded-sm overflow-hidden shadow-xl shadow-[#1a3a2a]/20 group">
               <Image
-                src="/aboutus.jpg"
+                src="/aboutus.webp"
                 alt="Viagro — Agricultural operations"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"

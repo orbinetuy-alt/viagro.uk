@@ -14,7 +14,7 @@ export default function Hero() {
     >
       {/* Background image */}
       <Image
-        src="/hero.png"
+        src="/hero.webp"
         alt="Agricultural field at sunset"
         fill
         priority
@@ -33,7 +33,7 @@ export default function Hero() {
       {/* Logo centrado */}
       <div className="absolute top-17 left-0 right-0 flex justify-center">
         <Image
-          src="/logo.png"
+          src="/logo.webp"
           alt="Viagro"
           width={250}
           height={170}

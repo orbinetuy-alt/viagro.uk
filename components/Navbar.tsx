@@ -42,7 +42,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#inicio" className="flex items-center select-none">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="Viagro"
             width={120}
             height={40}

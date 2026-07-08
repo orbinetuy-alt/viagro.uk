@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="relative bg-[#1a3a2a] overflow-hidden">
       {/* Background image */}
       <Image
-        src="/footer.jpg"
+        src="/footer.webp"
         alt="Agricultural fields at sunset"
         fill
         className="object-cover object-center"
@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="flex flex-col gap-4">
           <a href="#inicio">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="Viagro"
               width={120}
               height={40}
